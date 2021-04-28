@@ -24,10 +24,6 @@ import com.amazonaws.services.sns.model.PublishResult;
  * Mockito Documentation on mocking:
  * See <a href="http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html#4">Mockito Mocking Examples</a>
  *
- * To run these tests from the command line, use:
- * brazil-build single-test -DtestClass=com.amazon.testbootcamp.testdoubles.examples.MockingExamplesTests
- * or
- * brazil-build test
  */
 public class MockingExamplesTests {
 

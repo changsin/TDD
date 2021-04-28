@@ -20,9 +20,6 @@ import com.amazonaws.services.sns.AmazonSNSClient;
  *
  * WARNING: Mockito has an @Spy annotation and the concept of a spy. It is NOT the same thing as the spy concept we
  * learned about during the lecture portion - it refers to an advanced concept called "partial mocking."
- *
- * To run these tests from the command line, use:
- * brazil-build single-test -DtestClass=com.amazon.testbootcamp.testdoubles.examples.SpyingExamplesTests
  */
 public class SpyingExamplesTests {
 

@@ -20,11 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * This class has test cases that introduce stubbing (setting return values). You will need to remove the @Ignore
  * annotation from the test methods prior to running them or it won't execute.
- *
- * To run these tests from the command line, use: 
- * brazil-build single-test -DtestClass=com.tdd.testbootcamp.testdoubles.examples.StubbingExamplesTests
- * or
- * brazil-build test to run all unit tests.
  */
 public class StubbingExamplesTests {
 
