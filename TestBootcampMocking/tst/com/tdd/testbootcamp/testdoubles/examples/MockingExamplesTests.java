@@ -1,19 +1,18 @@
 package com.tdd.testbootcamp.testdoubles.examples;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-
-import org.mockito.ArgumentMatchers;
-import org.mockito.Mockito;
-
-import com.tdd.testbootcamp.testdoubles.PackageDepartEventPublisher;
-import com.tdd.testbootcamp.testdoubles.support.AmazonSNSIdentifier;
-import com.tdd.testbootcamp.testdoubles.support.PackageDepartEvent;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishResult;
+import com.tdd.testbootcamp.testdoubles.PackageDepartEventPublisher;
+import com.tdd.testbootcamp.testdoubles.support.AmazonSNSIdentifier;
+import com.tdd.testbootcamp.testdoubles.support.PackageDepartEvent;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.Mockito;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Welcome to the Test Bootcamp: Mocking and Stubbing hands-on workshop. In this workshop we'll be using Java and a

@@ -1,13 +1,13 @@
 package com.tdd.testbootcamp.testdoubles.examples;
 
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.services.sns.AmazonSNS;
+import com.amazonaws.services.sns.model.PublishResult;
 import com.tdd.testbootcamp.testdoubles.PackageDepartEventPublisher;
 import com.tdd.testbootcamp.testdoubles.support.AmazonSNSIdentifier;
 import com.tdd.testbootcamp.testdoubles.support.DepartNotificationPublishException;
 import com.tdd.testbootcamp.testdoubles.support.PackageDepartEvent;
 import com.tdd.testbootcamp.testdoubles.support.UnstableSNSClient;
-import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.sns.AmazonSNS;
-import com.amazonaws.services.sns.model.PublishResult;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
