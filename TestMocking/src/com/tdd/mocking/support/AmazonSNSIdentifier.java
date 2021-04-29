@@ -1,4 +1,4 @@
-package com.tdd.testbootcamp.testdoubles.support;
+package com.tdd.mocking.support;
 
 public class AmazonSNSIdentifier {
 

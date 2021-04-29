@@ -1,13 +1,13 @@
-package com.tdd.testbootcamp.testdoubles;
+package com.tdd.mocking;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.model.PublishResult;
 import com.google.common.base.Strings;
-import com.tdd.testbootcamp.testdoubles.support.AmazonSNSIdentifier;
-import com.tdd.testbootcamp.testdoubles.support.DepartNotificationPublishException;
-import com.tdd.testbootcamp.testdoubles.support.PackageDepartEvent;
+import com.tdd.mocking.support.AmazonSNSIdentifier;
+import com.tdd.mocking.support.DepartNotificationPublishException;
+import com.tdd.mocking.support.PackageDepartEvent;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

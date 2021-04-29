@@ -1,4 +1,4 @@
-package com.tdd.testbootcamp.testdoubles.support;
+package com.tdd.mocking.support;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;

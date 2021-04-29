@@ -1,11 +1,11 @@
-package com.tdd.testbootcamp.testdoubles.examples;
+package com.tdd.mocking.examples;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishResult;
-import com.tdd.testbootcamp.testdoubles.PackageDepartEventPublisher;
-import com.tdd.testbootcamp.testdoubles.support.AmazonSNSIdentifier;
-import com.tdd.testbootcamp.testdoubles.support.PackageDepartEvent;
+import com.tdd.mocking.PackageDepartEventPublisher;
+import com.tdd.mocking.support.AmazonSNSIdentifier;
+import com.tdd.mocking.support.PackageDepartEvent;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;

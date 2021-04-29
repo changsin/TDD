@@ -1,18 +1,17 @@
-package com.tdd.testbootcamp.testdoubles.examples;
+package com.tdd.mocking.examples;
 
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.sns.AmazonSNS;
 import com.amazonaws.services.sns.model.PublishResult;
-import com.tdd.testbootcamp.testdoubles.PackageDepartEventPublisher;
-import com.tdd.testbootcamp.testdoubles.support.AmazonSNSIdentifier;
-import com.tdd.testbootcamp.testdoubles.support.DepartNotificationPublishException;
-import com.tdd.testbootcamp.testdoubles.support.PackageDepartEvent;
-import com.tdd.testbootcamp.testdoubles.support.UnstableSNSClient;
+import com.tdd.mocking.PackageDepartEventPublisher;
+import com.tdd.mocking.support.AmazonSNSIdentifier;
+import com.tdd.mocking.support.PackageDepartEvent;
+import com.tdd.mocking.support.UnstableSNSClient;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Welcome to the Test Bootcamp: Mocking and Stubbing hands-on workshop. In this workshop we'll be using Java and a
