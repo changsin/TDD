@@ -16,28 +16,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SRPTest {
-	class Person {
-		String _firstName;
-		String _lastName;
-
-		Person(String firstName, String lastName) {
-			this._firstName = firstName;
-			this._lastName = lastName;
-		}
-
-		public String getFullName() {
-			return this._firstName + " " + this._lastName;
-		}
-
-		public String getReportRow() {
-			return String.format("<tr><td>%s</td></tr>", this._firstName + " " + this._lastName);
-		}
-	}
 
 	@Test
 	public void givenPersonWithFirstAndLastName_whenGetFullName_thenOutputIsExpected() {
 		// GIVEN
-		Person person = new Person("Buster", "Posey");
+		SRP.Person person = new SRP.Person("Buster", "Posey");
 		
 		// WHEN
 		String fullName = person.getFullName();
@@ -69,10 +52,4 @@ public class SRPTest {
 						
 		// THEN
 	}
-
-	// Extra credit: Design your own violation and refactor of the Single Responsibility Principle.
-	@Test
-	public void testYourOwnViolation() {
-
-	}	
 }

@@ -18,52 +18,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LSPTest {
-	class Rectangle {
-		int _width;
-		int _height;
-		String _color;
-
-		public Rectangle(int width, int height, String color) {
-			if (color.equals("Pink")) { throw new IllegalStateException(); }
-
-			this._width = width;
-			this._height = height;
-			this._color = color;
-		}
-
-		public boolean isValid() {
-			return this._width >= 0 && this._height >= 0;
-		}
-
-		public void paint() {
-			System.out.println("Painting the screen: " + this._color);
-		}
-
-		public int getArea() {
-			return this._width * this._height;
-		}
-
-		public String toString() {
-			return "Width: " + this._width + ", Height: " + this._height;
-		}
-	}
-
- 	class Square extends Rectangle {
-		public Square(int width, int height, String color) {
-			super(width, height, color);
-		}
-
-		public void setColor(String color) { this._color = color; }
-
-		public boolean isValid() {
-			return this._width == this._height;
-		}
-	}
-
 	@Test
 	public void givenSquare_whenGetArea_thenAreaIsExpected() {
 		// GIVEN
-		Square square = new Square(3, 3, "Red");
+		LSP.Square square = new LSP.Square(3, 3, "Red");
 		
 		// WHEN
 		int area = square.getArea();
@@ -78,10 +36,11 @@ public class LSPTest {
 	@Test
 	public void givenSquareWhichInheritsFromRectangleWithNegativeHeight_whenIsValid_thenReturnsFalse() {
 		// GIVEN
-		Rectangle square = new Square(-10, -10, "White");
+		LSP.Rectangle square = new LSP.Square(-10, -10, "White");
 		// WHEN
 								
 		// THEN
+		assertEquals(square.isValid(), false);
 	}
 	
 	

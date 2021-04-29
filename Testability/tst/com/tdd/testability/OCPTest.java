@@ -12,63 +12,19 @@ package com.tdd.testability;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OCPTest {
-	class MenuSystem {
-		public boolean isValidMenuText(String text) { 
-			return text.length() < 100; 
-		}
-		
-		public void drawMenus() {
-			// ... lots of code ...
-			initBrazilMenu();
-
-			// Drawing a Brazil menu
-			String brazilMenuText = "Brazil Menu";
-			
-			if (isValidMenuText(brazilMenuText)) {
-				paintBrazil(brazilMenuText);
-			}
-
-			// Drawing a Pipelines menu
-			preparePipelinesMenu();
-			
-			String pipelinesMenuText = "Pipelines Menu";
-			
-			if (isValidMenuText(pipelinesMenuText)) {
-				drawPipelinesMenu(pipelinesMenuText);
-			}
-			// ... lots of code ...
-		}
-
-		private void initBrazilMenu() {
-			// ... do some work ...
-		}
-
-		private void paintBrazil(String text) {
-			System.out.println(String.format("Inserting a menu item: %s", text));
-		}
-
-		private void preparePipelinesMenu() {
-			// ... do some work ...
-		}
-
-		private void drawPipelinesMenu(String text) {
-			System.out.println(String.format("Inserting a menu item: %s", text));
-		}
-	}
-
 	@Test
 	public void givenMenuSystem_whenIsValidMenuText_thenReturnsTrue() {
 		// GIVEN
-		MenuSystem menuSystem = new MenuSystem();
+		OCP.MenuSystem menuSystem = new OCP.MenuSystem();
 		
 		//WHEN
 		boolean validMenuText = menuSystem.isValidMenuText("Menu Item 1");
 		
 		// THEN
-		assertEquals(true, validMenuText);
+		assertTrue(validMenuText);
 	}
 
 	// Given: A MenuSystem that knows about multiple menu items
