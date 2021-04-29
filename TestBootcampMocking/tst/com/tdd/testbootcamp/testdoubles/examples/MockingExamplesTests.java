@@ -41,7 +41,7 @@ public class MockingExamplesTests {
         /**
          * Mockito implicitly checks that the call happened exactly 1 time.
          */
-        Mockito.verify(mockList, Mockito.times(2)).add(ArgumentMatchers.anyString());
+        Mockito.verify(mockList, Mockito.times(1)).add(ArgumentMatchers.anyString());
     }
 
     /**
@@ -65,7 +65,6 @@ public class MockingExamplesTests {
         /**
          * Add mock verification here
          */
-        Mockito.verify(snsClientTestDouble).publish("topic1", "event message", "subject1");
     }
 
     /**
@@ -104,8 +103,6 @@ public class MockingExamplesTests {
          *
          * Add mock verification below
          */
-        Mockito.verify(snsClientTestDouble, Mockito.times(2)).publish(ArgumentMatchers.anyString(),
-                ArgumentMatchers.anyString(), ArgumentMatchers.anyString());
     }
 }
 /**

@@ -60,10 +60,6 @@ public class SpyingExamplesTests {
         /**
          * Add your spying here.
          */
-        final ArgumentCaptor<String> capturedData = ArgumentCaptor.forClass(String.class);
-        Mockito.verify(snsClientTestDouble).publish(capturedData.capture(), ArgumentMatchers.anyString(),
-                ArgumentMatchers.anyString());
-        assertEquals("topic1", capturedData.getValue());
     }
 }
 /**

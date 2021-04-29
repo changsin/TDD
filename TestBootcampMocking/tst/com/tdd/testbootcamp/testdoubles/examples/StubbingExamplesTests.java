@@ -135,7 +135,6 @@ public class StubbingExamplesTests {
         final PublishResult actualResult = sut.publishEvent(eventToPublish);
 
         assertNotNull(actualResult);
-        assertEquals(publishResult, actualResult);
         // What should the expected result be?
         // Hint: Look at the publish() method in PackageDepartEventPublisher.
     }
@@ -170,14 +169,6 @@ public class StubbingExamplesTests {
         /**
          * Do your stubbing here!
          */
-        final PublishResult publishResult = new PublishResult();
-        publishResult.setMessageId(MESSAGE_ID);
-        Mockito.when(snsClientTestDouble.publish(TOPIC, EVENT_MESSAGE, SUBJECT)).thenReturn(publishResult);
-
-        assertThrows(DepartNotificationPublishException.class,
-                ()->{
-                    sut.publishEvent(eventToPublish);
-                });
     }
 
     /**
@@ -209,15 +200,6 @@ public class StubbingExamplesTests {
         /**
          * Do your stubbing here!
          */
-        final PublishResult publishResult = new PublishResult();
-        publishResult.setMessageId(MESSAGE_ID);
-        Mockito.when(snsClientTestDouble.publish(TOPIC, EVENT_MESSAGE, SUBJECT))
-                .thenThrow(AmazonServiceException.class)
-                .thenReturn(publishResult);
-
-        final PublishResult actualResult = sut.publishEvent(eventToPublish);
-
-        assertEquals(expectedResult, actualResult);
     }
 
     /**
