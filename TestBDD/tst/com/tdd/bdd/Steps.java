@@ -3,11 +3,17 @@ package com.tdd.bdd;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.ko.먼저;
 
 public class Steps {
-    @Given("Load a text file")
+    @먼저("^Load a text file$")
     public void loadATextFile() {
         System.out.println("Loading a text file? Yes");
+    }
+
+    @먼저("Load a text file {string}")
+    public void loadATextFile(String arg0) {
+        System.out.println("Loading a text ㄴㄹㅁㅇㄴ ㄴㅁ file? Yes");
     }
 
     @When("^Open the url$")
