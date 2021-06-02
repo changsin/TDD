@@ -7,6 +7,7 @@ if find_spec("tdd_python") is None:
 
 import tdd_python.src.sample as sample
 
+
 class TestSample(unittest.TestCase):
 
     @classmethod
@@ -30,20 +31,21 @@ class TestSample(unittest.TestCase):
         """
         # res = sample.fib(1)
         # print("result: {}".format(res))
-        self.assertEqual(sample.fib(0), 1)
+        self.assertEqual(sample.fib(0), 0)
         self.assertEqual(sample.fib(1), 1)
-        self.assertEqual(sample.fib(3), 3)
-        self.assertEqual(sample.fib(4), 5)
-        self.assertEqual(sample.fib(5), 8)
+        self.assertEqual(sample.fib(3), 2)
+        self.assertEqual(sample.fib(4), 3)
+        self.assertEqual(sample.fib(5), 5)
 
     def test_fib_invalid(self):
         self.assertEqual(sample.fib(-1), 0)
 
         # ??? What should be the expected result?
-        self.assertEqual(sample.fib(.55), 1)
+        # self.assertEqual(sample.fib(.55), 1)
 
     def fib_this_does_not_run(self):
         self.assertEqual(sample.fib(-1), 0)
+
 
 if __name__=='__main__':
     unittest.main()
