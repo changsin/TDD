@@ -1,5 +1,7 @@
 import unittest
 
+from unittest.mock import MagicMock
+
 from importlib.util import find_spec
 if find_spec("tdd_python") is None:
     import sys
@@ -44,7 +46,11 @@ class TestSample(unittest.TestCase):
         # self.assertEqual(sample.fib(.55), 1)
 
     def fib_this_does_not_run(self):
-        self.assertEqual(sample.fib(-1), 0)
+        self.assertEqual(sample.fib(-1), 1)
+
+    def test_mock(self):
+        sample.fib = MagicMock(return_value=16)
+        self.assertEqual(sample.fib(5), 16)
 
 
 if __name__=='__main__':
