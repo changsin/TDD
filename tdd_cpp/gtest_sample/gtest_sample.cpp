@@ -11,7 +11,7 @@ public:
         accountId(accountId), ownerName(ownerName), balance(0) {
     }
 
-    ~BankAccount() {
+    virtual ~BankAccount() {
     }
 
     int getAccountId() const { return accountId; }
@@ -38,16 +38,70 @@ private:
     std::_In_place_key_extract_map<int, BankAccount> accounts;
 };
 
+class BankAccountTest : public testing::Test {
+public:
+    BankAccountTest() {
+        account = new BankAccount(1234, "John Smith");
+    }
+
+    virtual ~BankAccountTest() {
+        delete account;
+    }
+
+    BankAccount* getAccount() {
+        return account;
+    }
+private:
+    BankAccount* account;
+};
+
+
 TEST(Account, initAccount) {
+
+    // Arange - Setup
+
     BankAccount account(1234, "John Smith");
-    ASSERT_EQ(account.getAccountId(), 1234);
+
+    // Act - Execute
+    int accountId = account.getAccountId();
+    ASSERT_EQ(accountId, 1234);
+
+    // Assert - Verify, cleanpu
     ASSERT_EQ(account.getOwnerName(), "John Smith");
+    std::cout << "Hello GTest!\n";
     ASSERT_EQ(account.getBalance(), 0);
+}
+
+TEST_F(BankAccountTest, EmptyAccount) {
+    EXPECT_EQ(0, getAccount()->getBalance());
+}
+
+TEST_F(BankAccountTest, Deposit) {
+    getAccount()->deposit(100);
+    EXPECT_EQ(100, getAccount()->getBalance());
+}
+
+
+int fib(int id) {
+    if (id < 0) {
+        return -1;
+    }
+    if (id == 0 || id == 1) {
+        return id;
+    }
+
+    return fib(id - 2) + fib(id - 1);
+}
+
+TEST(FibTest, Valid) {
+    ASSERT_EQ(fib(-1), -1);
+    ASSERT_EQ(fib(0), 0);
+    ASSERT_EQ(fib(1), 1);
+    ASSERT_EQ(fib(3), 2);
 }
 
 int main(int argc, wchar_t* argv[]) {
     testing::InitGoogleTest(&argc, argv);
     std::cout << "Hello GTest!\n";
     return RUN_ALL_TESTS();
-    std::cout << "Hello World!\n";
 }
