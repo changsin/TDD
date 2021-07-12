@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 
-
+/**
+* The following examples are inspired by https://youtu.be/16FI1-d2P4E
+**/
 class BankAccount {
 public:
     explicit BankAccount(int accountId, std::string ownerName) :
