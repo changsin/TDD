@@ -35,9 +35,9 @@ public:
     MOCK_METHOD2(login, bool(string username, string password));
 };
 
-class MyDataBase {
+class MyService {
 public:
-    MyDataBase(DataBaseConnect& dbC) : dbC(dbC) {}
+    MyService(DataBaseConnect& dbC) : dbC(dbC) {}
     bool init(string username, string password) {
         if (dbC.login(username, password) != true) {
             cout << "DB Login failed" << endl;
@@ -64,54 +64,70 @@ private:
 
 TEST(TestRealDB, FlakyConnections) {
     DataBaseConnect realDB;
-    MyDataBase db(realDB);
+    MyService service(realDB);
 
-    bool retvalue = db.init("john", "password");
+    bool retvalue = service.init("john", "password");
     EXPECT_EQ(retvalue, true);
 
-    int record = db.fetchRecord(12);
+    int record = service.fetchRecord(12);
     ASSERT_GT(record, 0);
 }
 
 TEST(TestMockDB, StableConnections) {
     MockDB mockDB;
-    MyDataBase db(mockDB);
+    MyService service(mockDB);
 
     EXPECT_CALL(mockDB, login("John", "password"))
         .WillOnce(Return(true));
 
-    bool retValue = db.init("John", "password");
+    bool retValue = service.init("John", "password");
     EXPECT_EQ(retValue, true);
 
     //ON_CALL(mockDB, fetchRecord(12)).WillByDefault(Return(24));
     EXPECT_CALL(mockDB, fetchRecord(12)).WillRepeatedly(Return(24));
-    int record = db.fetchRecord(12);
+    int record = service.fetchRecord(12);
     cout << "####Record is " << record << endl;
     EXPECT_GT(record, 0);
 }
 
-TEST(MyDBTest, LoginTest) {
+TEST(TestMockDB, InvalidLogin) {
     MockDB mockDB;
-    MyDataBase db(mockDB);
+    MyService service(mockDB);
 
     EXPECT_CALL(mockDB, login("John", "password"))
-        .Times(1)
-        .WillOnce(Return(true));
-    //ON_CALL(mockDB, login(_, _)).WillByDefault(Return(true));
+        .WillOnce(Return(false));
 
-    int retValue = db.init("John", "password");
-    EXPECT_EQ(retValue, 1);
+    bool retValue = service.init("John", "password");
+    EXPECT_EQ(retValue, false);
+
+    EXPECT_CALL(mockDB, fetchRecord(12)).WillRepeatedly(Return(-1));
+    int record = service.fetchRecord(12);
+    cout << "####Record is " << record << endl;
+    EXPECT_EQ(record, -1);
 }
 
-//TEST(MyDBTest, LoginFailure) {
+//TEST(MyDBTest, LoginTest) {
 //    MockDB mockDB;
 //    MyDataBase db(mockDB);
 //
-//    EXPECT_CALL(mockDB, login(_, _))
-//        .Times(2)
-//        .WillOnce(Return(false));
+//    EXPECT_CALL(mockDB, login("John", "password"))
+//        .Times(1)
+//        .WillOnce(Return(true));
+//    //ON_CALL(mockDB, login(_, _)).WillByDefault(Return(true));
 //
 //    int retValue = db.init("John", "password");
-//    EXPECT_EQ(retValue, -1);
+//    EXPECT_EQ(retValue, 1);
+//}
 //
+////TEST(MyDBTest, LoginFailure) {
+////    MockDB mockDB;
+////    MyDataBase db(mockDB);
+////
+////    EXPECT_CALL(mockDB, login(_, _))
+////        .Times(2)
+////        .WillOnce(Return(false));
+////
+////    int retValue = db.init("John", "password");
+////    EXPECT_EQ(retValue, -1);
+////
 //}
