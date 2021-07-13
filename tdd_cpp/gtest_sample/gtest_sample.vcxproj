@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="bank_tests.cpp" />
     <ClCompile Include="fibonacci_tests.cpp" />
+    <ClCompile Include="gmock_sample.cpp" />
     <ClCompile Include="gtest_sample.cpp" />
   </ItemGroup>
   <ItemGroup>

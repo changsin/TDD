@@ -48,9 +48,7 @@ private:
 
 // simple test
 TEST(Account, initAccount) {
-
     // Arange - Setup
-
     BankAccount account(1234, "John Smith");
 
     // Act - Execute
