@@ -36,21 +36,19 @@ public:
 };
 
 class MyService {
+    const int MAX_RETRIES = 2;
 public:
     MyService(DataBaseConnect& dbC) : dbC(dbC) {}
     bool init(string username, string password) {
-        if (dbC.login(username, password) != true) {
-            cout << "DB Login failed" << endl;
-            //if (dbC.login(username, password) != true) {
-            //    cout << "DB FAILURE for the 2nd time" << endl;
-            //    return -1;
-            //}
-            return false;
+        int retryCount = 0;
+        bool retValue = dbC.login(username, password);
+        while (!retValue && retryCount < MAX_RETRIES) {
+            cout << "DB Login failed. Trying again..." << endl;
+            retValue = dbC.login(username, password);
+            retryCount++;
         }
-        else {
-            cout << "DB SUCCESS" << endl;
-            return true;
-        }
+
+        return retValue;
     }
 
     int fetchRecord(int id) {
@@ -94,10 +92,13 @@ TEST(TestMockDB, InvalidLogin) {
     MockDB mockDB;
     MyService service(mockDB);
 
-    EXPECT_CALL(mockDB, login("John", "password"))
+    EXPECT_CALL(mockDB, login(_, _))
+        .Times(3)
+        .WillOnce(Return(false))
+        .WillOnce(Return(false))
         .WillOnce(Return(false));
 
-    bool retValue = service.init("John", "password");
+    bool retValue = service.init("hn", "password");
     EXPECT_EQ(retValue, false);
 
     EXPECT_CALL(mockDB, fetchRecord(12)).WillRepeatedly(Return(-1));
@@ -106,28 +107,28 @@ TEST(TestMockDB, InvalidLogin) {
     EXPECT_EQ(record, -1);
 }
 
-//TEST(MyDBTest, LoginTest) {
-//    MockDB mockDB;
-//    MyDataBase db(mockDB);
-//
-//    EXPECT_CALL(mockDB, login("John", "password"))
-//        .Times(1)
-//        .WillOnce(Return(true));
-//    //ON_CALL(mockDB, login(_, _)).WillByDefault(Return(true));
-//
-//    int retValue = db.init("John", "password");
-//    EXPECT_EQ(retValue, 1);
-//}
-//
-////TEST(MyDBTest, LoginFailure) {
-////    MockDB mockDB;
-////    MyDataBase db(mockDB);
-////
-////    EXPECT_CALL(mockDB, login(_, _))
-////        .Times(2)
-////        .WillOnce(Return(false));
-////
-////    int retValue = db.init("John", "password");
-////    EXPECT_EQ(retValue, -1);
-////
-//}
+TEST(MyDBTest, LoginTest) {
+    MockDB mockDB;
+    MyService service(mockDB);
+
+    //EXPECT_CALL(mockDB, login("John", "password"))
+    //    //.Times(2)
+    //    .WillRepeatedly(Return(true));
+    ON_CALL(mockDB, login(_, _)).WillByDefault(Return(true));
+
+    bool retValue = service.init("John", "password");
+    EXPECT_EQ(retValue, true);
+}
+
+TEST(MyDBTest, LoginRetry) {
+    MockDB mockDB;
+    MyService service(mockDB);
+
+    EXPECT_CALL(mockDB, login("John", "password"))
+        .Times(2)
+        .WillOnce(Return(false))
+        .WillOnce(Return(true));
+
+    bool retValue = service.init("John", "password");
+    EXPECT_EQ(retValue, true);
+}
