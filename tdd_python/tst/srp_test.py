@@ -1,13 +1,13 @@
 import pytest
 
-from tdd_python.src.srp_person import SRP
+from tdd_python.src.srp_person import Person
 
 def test_srp_full_name():
     """
     # SRP: normal case
     """
     # GIVEN
-    person1 = SRP.Person("Tom", "John")
+    person1 = Person("Tom", "John")
 
     # WHEN
     full_name = person1.get_full_name()
