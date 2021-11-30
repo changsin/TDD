@@ -27,9 +27,9 @@ def test_lsp_square_negative_width_height():
     pass
 
 
-def test_lsp_square_negative_width_height():
+def test_lsp_square_invalid():
     """
-    # LSP: check if width & height are not negative
+    # LSP: check if width & height are the same
     """
     # GIVEN
 
