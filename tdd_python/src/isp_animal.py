@@ -5,7 +5,7 @@ class Animal:
         self.groomed_times = 0
 
     def feed(self, times):
-        print("Fed " + times)
+        print("Fed {}".format(times))
         self.fed_times += times
         return self.fed_times
 
