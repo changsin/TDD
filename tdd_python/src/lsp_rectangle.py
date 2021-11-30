@@ -19,4 +19,4 @@ class Square(Rectangle):
         super().__init__(width, height, color)
 
     def is_valid(self):
-        return self.width == self.height
+        return super().is_valid() and self.width == self.height

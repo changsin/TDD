@@ -1,6 +1,7 @@
 import pytest
 
-from tdd_python.src.srp_person import Person
+from tdd_python.src.srp_person import Person, PersonReport
+
 
 def test_srp_full_name():
     """
@@ -14,7 +15,6 @@ def test_srp_full_name():
 
     # THEN
     assert full_name == "Tom John"
-    pass
 
 
 def test_srp_two_new_fields():
@@ -35,11 +35,13 @@ def test_srp_report_format_changed():
     <div>...</div>
     """
     # GIVEN
+    person1 = Person("Tom", "John")
+    person2 = Person("John", "Lee")
 
+    people = [person1, person2]
     # WHEN
-
-    # THEN
-    pass
+    report = PersonReport()
+    report.get_full_names(people)
 
 
 if __name__ == '__main__':
